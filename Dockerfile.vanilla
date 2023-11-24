@@ -1,0 +1,10 @@
+FROM openjdk:17-oracle
+# RUN apt update && apt install curl -y
+WORKDIR /minecraft_installation
+RUN curl -o server.jar https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar
+RUN mkdir /mc_worlds
+COPY eula.txt eula.txt
+COPY run_mc.sh run_mc.sh
+COPY server.properties server.properties
+EXPOSE 25565
+CMD ["bash", "run_mc.sh"]
